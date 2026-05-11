@@ -525,6 +525,11 @@
   const embedCache = {};
   let current = 0;
 
+  function getVimeoId(url) {
+    const m = url.match(/vimeo\.com\/(\d+)/);
+    return m ? m[1] : null;
+  }
+
   function getEmbed(raw) {
     if (!raw) return null;
     if (embedCache[raw]) return embedCache[raw];
@@ -535,6 +540,33 @@
     if (yt) url = 'https://www.youtube.com/embed/' + yt[1] + '?autoplay=1&rel=0&modestbranding=1';
     embedCache[raw] = url;
     return url;
+  }
+
+  async function loadVimeoThumbnails() {
+    VIDEOS.forEach(async (videoUrl, i) => {
+      if (!videoUrl) return;
+      const id = getVimeoId(videoUrl);
+      if (!id) return;
+      // Si hay thumbnail manual, usarla
+      if (THUMBNAILS[i]) {
+        const bg = document.getElementById('bg' + i);
+        if (bg) { bg.style.backgroundImage = 'url(' + THUMBNAILS[i] + ')'; bg.style.backgroundSize = 'cover'; }
+        return;
+      }
+      // Si no, buscar thumbnail de Vimeo via oEmbed (no requiere API key)
+      try {
+        const res = await fetch('https://vimeo.com/api/oembed.json?url=https://vimeo.com/' + id + '&width=640');
+        const data = await res.json();
+        if (data.thumbnail_url) {
+          const bg = document.getElementById('bg' + i);
+          if (bg) {
+            bg.style.backgroundImage = 'url(' + data.thumbnail_url + ')';
+            bg.style.backgroundSize = 'cover';
+            bg.style.backgroundPosition = 'center';
+          }
+        }
+      } catch(e) {}
+    });
   }
 
   function applyThumbnails() {
@@ -597,6 +629,7 @@
   });
 
   applyThumbnails();
+  loadVimeoThumbnails();
 </script>
 </body>
 </html>
