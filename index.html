@@ -405,6 +405,7 @@
   <div class="cell" onclick="openModal(2)"><div class="cell-inner"><div class="cell-bg c2" id="bg2"></div><div class="cell-overlay"><div class="play-ring"><div class="play-tri"></div></div></div></div><div class="cell-num">03</div></div>
   <div class="cell" onclick="openModal(3)"><div class="cell-inner"><div class="cell-bg c3" id="bg3"></div><div class="cell-overlay"><div class="play-ring"><div class="play-tri"></div></div></div></div><div class="cell-num">04</div></div>
   <div class="cell" onclick="openModal(4)"><div class="cell-inner"><div class="cell-bg c4" id="bg4"></div><div class="cell-overlay"><div class="play-ring"><div class="play-tri"></div></div></div></div><div class="cell-num">05</div></div>
+  <div class="cell" onclick="openModal(5)"><div class="cell-inner"><div class="cell-bg c5" id="bg5"></div><div class="cell-overlay"><div class="play-ring"><div class="play-tri"></div></div></div></div><div class="cell-num">06</div></div>
 </div>
 
 <!-- ABOUT -->
@@ -480,7 +481,7 @@
   </div>
   <div class="modal-controls">
     <button class="modal-close" onclick="closeModal()">✕ cerrar</button>
-    <div class="modal-counter" id="counter">01 / 05</div>
+    <div class="modal-counter" id="counter">01 / 06</div>
     <div class="modal-nav">
       <button onclick="navModal(-1)">← anterior</button>
       <button onclick="navModal(1)">siguiente →</button>
@@ -505,11 +506,12 @@
   */
 
   const VIDEOS = [
-    'https://vimeo.com/1190893270', /* 01 */
-    'https://vimeo.com/1190893998', /* 02 */
-    'https://vimeo.com/1190896723', /* 03 */
-    'https://vimeo.com/1190896788', /* 04 */
-    'https://vimeo.com/1190897022'  /* 05 */
+    'https://vimeo.com/1190896723', /* 01 - Eternauta 01 */
+    'https://vimeo.com/1190896788', /* 02 - Eternauta 02 */
+    'https://vimeo.com/1190896898', /* 03 - Eternauta 03 */
+    'https://vimeo.com/1190893270', /* 04 - Adidas Bad Bunny BadBo */
+    'https://vimeo.com/1190893998', /* 05 - Adidas Bad Bunny Vaquero */
+    'https://vimeo.com/1190897022'  /* 06 - Adidas Letters Messi + Bad Bunny */
   ];
 
   const THUMBNAILS = [
@@ -517,7 +519,8 @@
     null, /* 02 */
     null, /* 03 */
     null, /* 04 */
-    null  /* 05 */
+    null, /* 05 */
+    null  /* 06 */
   ];
 
   /* ━━ No hace falta tocar nada de acá para abajo ━━ */
