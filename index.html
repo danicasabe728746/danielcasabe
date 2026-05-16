@@ -3,383 +3,95 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Daniel Casabé — Director, Montajista y Productor</title>
+<title>Daniel Casabé — Director & Montajista</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Karla:wght@300;400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --black: #080808;
-    --white: #e8e4dc;
-    --dim: rgba(232,228,220,0.25);
-    --line: rgba(232,228,220,0.06);
-  }
-
+  :root { --black: #080808; --white: #e8e4dc; --line: rgba(232,228,220,0.06); }
   html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--white); font-family: 'Karla', sans-serif; overflow-x: hidden; }
 
-  body {
-    background: var(--black);
-    color: var(--white);
-    font-family: 'Karla', sans-serif;
-    overflow-x: hidden;
-    min-height: 100vh;
-  }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1.75rem 2.5rem; border-bottom: 1px solid var(--line); position: sticky; top: 0; background: var(--black); z-index: 10; }
+  .logo { font-family: 'Cormorant', serif; font-size: 1.2rem; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); }
+  .nav-links { display: flex; gap: 2rem; align-items: center; }
+  .nav-link { font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); text-decoration: none; transition: opacity 0.25s; }
+  .nav-link:hover { opacity: 0.6; }
+  .nav-about { font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); border: 1px solid rgba(232,228,220,0.35); padding: 0.4rem 1rem; text-decoration: none; transition: all 0.25s; cursor: pointer; background: none; font-family: 'Karla', sans-serif; }
+  .nav-about:hover { opacity: 0.6; }
 
-  /* NAV */
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2rem 2.5rem;
-    border-bottom: 1px solid var(--line);
-    position: sticky;
-    top: 0;
-    background: var(--black);
-    z-index: 10;
-  }
-  .logo {
-    font-family: 'Cormorant', serif;
-    font-size: 1.3rem;
-    font-weight: 300;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-  }
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    align-items: center;
-  }
-  .nav-link {
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(232,228,220,0.3);
-    text-decoration: none;
-    transition: color 0.25s;
-    font-family: 'Karla', sans-serif;
-  }
-  .nav-link:hover { color: var(--white); }
-  .nav-contact {
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--dim);
-    border: 1px solid rgba(232,228,220,0.12);
-    padding: 0.45rem 1.1rem;
-    cursor: pointer;
-    transition: all 0.25s;
-    background: none;
-    font-family: 'Karla', sans-serif;
-    text-decoration: none;
-  }
-  .nav-contact:hover { color: var(--white); border-color: rgba(232,228,220,0.35); }
+  .hero { padding: 5rem 2.5rem 3.5rem; display: flex; align-items: flex-end; justify-content: space-between; border-bottom: 1px solid var(--line); min-height: 35vh; }
+  .hero-name { font-family: 'Cormorant', serif; font-size: clamp(2rem, 4.5vw, 4rem); font-weight: 300; line-height: 1; letter-spacing: -0.01em; color: var(--white); }
+  .hero-roles { font-size: 0.9rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--white); line-height: 2.4; text-align: right; padding-bottom: 0.25rem; }
 
-  /* HERO */
-  .hero {
-    padding: 5rem 2.5rem 3.5rem;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    border-bottom: 1px solid var(--line);
-    min-height: 38vh;
-  }
-  .hero-name {
-    font-family: 'Cormorant', serif;
-    font-size: clamp(3.5rem, 8vw, 7rem);
-    font-weight: 300;
-    line-height: 0.88;
-    letter-spacing: -0.01em;
-  }
-  .hero-name em { font-style: italic; color: rgba(232,228,220,0.4); }
-  .hero-role {
-    font-size: 0.65rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: rgba(232,228,220,0.3);
-    line-height: 2.4;
-    text-align: right;
-    padding-bottom: 0.5rem;
-  }
+  .section-header { padding: 2.5rem 2.5rem 0; display: flex; align-items: center; gap: 1.5rem; }
+  .section-title { font-size: 0.8rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--white); white-space: nowrap; }
+  .section-line { flex: 1; height: 1px; background: var(--line); }
 
-  /* GRID */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--line);
-  }
-  .cell {
-    background: var(--black);
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-  }
-  .cell-inner {
-    width: 100%;
-    padding-bottom: 62%;
-    position: relative;
-    overflow: hidden;
-  }
-  .cell-bg {
-    position: absolute;
-    inset: 0;
-    transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
-    background-size: cover;
-    background-position: center;
-  }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); margin-top: 1.5rem; }
+  .cell { background: var(--black); position: relative; overflow: hidden; cursor: pointer; }
+  .cell-inner { width: 100%; padding-bottom: 60%; position: relative; overflow: hidden; }
+  .cell-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94); }
   .cell:hover .cell-bg { transform: scale(1.05); }
-
-  .c0 { background-color: #0d0d0d; }
-  .c1 { background-color: #0a0c0e; }
-  .c2 { background-color: #0e0d0b; }
-  .c3 { background-color: #0b0e0c; }
-  .c4 { background-color: #0e0b0d; }
-  .c5 { background-color: #0c0c0e; }
-  .c6 { background-color: #0e0c0b; }
-  .c7 { background-color: #0b0d0e; }
-  .c8 { background-color: #0d0b0b; }
-
-  .cell-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.35s;
-    background: rgba(8,8,8,0.4);
-  }
+  .cell-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.35s; background: rgba(8,8,8,0.45); }
   .cell:hover .cell-overlay { opacity: 1; }
-  .play-ring {
-    width: 52px; height: 52px;
-    border: 1px solid rgba(232,228,220,0.5);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .play-tri {
-    width: 0; height: 0;
-    border-style: solid;
-    border-width: 8px 0 8px 16px;
-    border-color: transparent transparent transparent rgba(232,228,220,0.9);
-    margin-left: 4px;
-  }
-  .cell-num {
-    position: absolute;
-    bottom: 0.75rem;
-    left: 0.85rem;
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    color: rgba(232,228,220,0.18);
-    transition: color 0.3s;
-  }
-  .cell:hover .cell-num { color: rgba(232,228,220,0.5); }
+  .play-ring { width: 48px; height: 48px; border: 1px solid rgba(232,228,220,0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .play-tri { width: 0; height: 0; border-style: solid; border-width: 7px 0 7px 14px; border-color: transparent transparent transparent rgba(232,228,220,0.9); margin-left: 3px; }
+  .cell-info { padding: 0.75rem 1rem 1rem; border-top: 1px solid var(--line); }
+  .cell-title { font-family: 'Cormorant', serif; font-size: 1rem; font-weight: 300; color: rgba(232,228,220,0.75); line-height: 1.3; }
 
-  /* ABOUT */
-  .about {
-    padding: 5rem 2.5rem;
-    display: grid;
-    grid-template-columns: 1fr 1.4fr;
-    gap: 5rem;
-    border-top: 1px solid var(--line);
-    align-items: start;
-  }
-  .about-left {}
-  .about-label {
-    font-size: 0.6rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: rgba(232,228,220,0.25);
-    margin-bottom: 2.5rem;
-  }
-  .about-name {
-    font-family: 'Cormorant', serif;
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    font-weight: 300;
-    line-height: 1.05;
-    margin-bottom: 0.5rem;
-  }
-  .about-name em {
-    font-style: italic;
-    color: rgba(232,228,220,0.4);
-    display: block;
-    font-size: 0.75em;
-  }
-  .about-credits {
-    margin-top: 2.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.9rem;
-  }
-  .credit-item {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-  }
-  .credit-year {
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    color: rgba(232,228,220,0.2);
-    min-width: 2.5rem;
-    font-variant-numeric: tabular-nums;
-  }
-  .credit-text {
-    font-size: 0.8rem;
-    color: rgba(232,228,220,0.55);
-    line-height: 1.5;
-    font-weight: 300;
-  }
-  .credit-text strong {
-    color: rgba(232,228,220,0.85);
-    font-weight: 400;
-  }
+  .c0{background-color:#0d0d0d}.c1{background-color:#0a0c0e}.c2{background-color:#0e0d0b}
+  .c3{background-color:#0b0e0c}.c4{background-color:#0e0b0d}.c5{background-color:#0c0c0e}
+  .c6{background-color:#0e0c0b}.c7{background-color:#0b0d0e}.c8{background-color:#0d0b0b}
+  .c9{background-color:#0c0d0e}.c10{background-color:#0e0c0d}.c11{background-color:#0b0b0e}
+  .c12{background-color:#0d0e0b}.c13{background-color:#0e0d0d}
 
-  .about-right {}
-  .about-bio {
-    font-family: 'Cormorant', serif;
-    font-size: 1.25rem;
-    font-weight: 300;
-    line-height: 1.75;
-    color: rgba(232,228,220,0.7);
-    margin-bottom: 2rem;
-  }
-  .about-bio em {
-    font-style: italic;
-    color: rgba(232,228,220,0.9);
-  }
-  .about-quote {
-    border-left: 1px solid rgba(232,228,220,0.1);
-    padding-left: 1.5rem;
-    margin-top: 2.5rem;
-  }
-  .about-quote p {
-    font-family: 'Cormorant', serif;
-    font-style: italic;
-    font-size: 1rem;
-    color: rgba(232,228,220,0.3);
-    line-height: 1.8;
-  }
+  .coming { grid-column: span 3; padding: 3rem 2.5rem; font-family: 'Cormorant', serif; font-style: italic; font-size: 1rem; color: rgba(232,228,220,0.12); }
+  .grid-vertical { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); margin-top: 1.5rem; max-width: 900px; margin-left: 0; margin-right: auto; }
+  .grid-vertical .cell-inner { width: 100%; padding-bottom: 148%; position: relative; overflow: hidden; }
 
-  /* MODAL */
-  .modal-backdrop {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(4,4,4,0.97);
-    z-index: 100;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 2rem;
-  }
+  /* VIDEO MODAL */
+  .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(4,4,4,0.97); z-index: 100; align-items: center; justify-content: center; flex-direction: column; padding: 2rem; }
   .modal-backdrop.open { display: flex; }
-  .modal-player {
-    width: 100%;
-    max-width: 900px;
-    aspect-ratio: 16/9;
-    background: #0f0f0f;
-    border: 1px solid rgba(232,228,220,0.08);
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .modal-iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%; height: 100%;
-    border: none;
-    display: none;
-  }
+  .modal-player { width: 100%; max-width: 900px; aspect-ratio: 16/9; background: #0f0f0f; border: 1px solid rgba(232,228,220,0.08); position: relative; display: flex; align-items: center; justify-content: center; }
+  .modal-iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; display: none; }
   .modal-iframe.loaded { display: block; }
-  .modal-placeholder {
-    font-family: 'Cormorant', serif;
-    font-style: italic;
-    font-size: 1rem;
-    color: rgba(232,228,220,0.15);
-    text-align: center;
-    padding: 2rem;
-    line-height: 1.8;
-  }
-  .modal-controls {
-    width: 100%;
-    max-width: 900px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1.25rem;
-  }
-  .modal-close {
-    font-size: 0.6rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: rgba(232,228,220,0.3);
-    cursor: pointer;
-    border: none;
-    background: none;
-    font-family: 'Karla', sans-serif;
-    transition: color 0.3s;
-    padding: 0;
-  }
-  .modal-close:hover { color: var(--white); }
-  .modal-counter {
-    font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    color: rgba(232,228,220,0.18);
-  }
+  .modal-placeholder { font-family: 'Cormorant', serif; font-style: italic; font-size: 1rem; color: rgba(232,228,220,0.15); }
+  .modal-controls { width: 100%; max-width: 900px; display: flex; justify-content: space-between; align-items: center; margin-top: 1.25rem; }
+  .modal-title-label { font-family: 'Cormorant', serif; font-size: 0.85rem; color: rgba(232,228,220,0.35); font-style: italic; }
+  .modal-close { font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--white); cursor: pointer; border: none; background: none; font-family: 'Karla', sans-serif; transition: opacity 0.3s; padding: 0; }
+  .modal-close:hover { opacity: 0.6; }
   .modal-nav { display: flex; gap: 1.5rem; }
-  .modal-nav button {
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(232,228,220,0.25);
-    cursor: pointer;
-    border: none;
-    background: none;
-    font-family: 'Karla', sans-serif;
-    transition: color 0.3s;
-    padding: 0;
-  }
-  .modal-nav button:hover { color: var(--white); }
+  .modal-nav button { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); cursor: pointer; border: none; background: none; font-family: 'Karla', sans-serif; transition: opacity 0.3s; padding: 0; }
+  .modal-nav button:hover { opacity: 0.6; }
 
-  /* FOOTER */
-  .bottom-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.5rem 2.5rem;
-    border-top: 1px solid var(--line);
-    margin-top: 1px;
-  }
-  .bottom-email {
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(232,228,220,0.25);
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  .bottom-email:hover { color: rgba(232,228,220,0.7); }
-  .bottom-tag {
-    font-family: 'Cormorant', serif;
-    font-style: italic;
-    font-size: 0.95rem;
-    color: rgba(232,228,220,0.15);
-  }
+  /* ABOUT OVERLAY */
+  .about-overlay { display: none; position: fixed; inset: 0; background: rgba(4,4,4,0.97); z-index: 200; align-items: center; justify-content: center; padding: 3rem; overflow-y: auto; }
+  .about-overlay.open { display: flex; }
+  .about-box { max-width: 660px; width: 100%; }
+  .about-close { font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--white); background: none; border: none; cursor: pointer; font-family: 'Karla', sans-serif; margin-bottom: 3rem; transition: opacity 0.3s; padding: 0; display: block; }
+  .about-close:hover { opacity: 0.6; }
+  .about-name-big { font-family: 'Cormorant', serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 300; line-height: 1; margin-bottom: 0.5rem; }
+  .about-tagline { font-family: 'Cormorant', serif; font-style: italic; font-size: 1.05rem; color: rgba(232,228,220,0.35); margin-bottom: 2.5rem; }
+  .about-text { font-family: 'Cormorant', serif; font-size: 1.1rem; font-weight: 300; line-height: 1.85; color: rgba(232,228,220,0.6); margin-bottom: 1.25rem; }
+  .about-text em { font-style: italic; color: rgba(232,228,220,0.9); }
+  .about-imdb { display: inline-flex; align-items: center; gap: 0.75rem; margin-top: 2rem; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(232,228,220,0.3); border: 1px solid rgba(232,228,220,0.1); padding: 0.6rem 1.25rem; text-decoration: none; transition: all 0.25s; }
+  .about-imdb:hover { color: var(--white); border-color: rgba(232,228,220,0.35); }
+  .imdb-badge { background: #f5c518; color: #000; font-weight: 700; font-size: 0.65rem; padding: 0.1rem 0.3rem; font-family: 'Karla', sans-serif; letter-spacing: 0; }
 
-  /* RESPONSIVE */
+  .bottom-bar { display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 2.5rem; border-top: 1px solid var(--line); margin-top: 4rem; flex-wrap: wrap; gap: 1rem; }
+  .bottom-contact { display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; }
+  .bottom-link { font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); text-decoration: none; transition: opacity 0.3s; }
+  .bottom-link:hover { opacity: 0.6; }
+  .bottom-tag { font-family: 'Cormorant', serif; font-style: italic; font-size: 0.9rem; color: rgba(232,228,220,0.2); }
+
   @media (max-width: 768px) {
-    .about { grid-template-columns: 1fr; gap: 3rem; padding: 3rem 1.5rem; }
     .grid { grid-template-columns: repeat(2, 1fr); }
     .hero { flex-direction: column; gap: 2rem; min-height: auto; padding: 3rem 1.5rem 2rem; }
-    .hero-role { text-align: left; }
+    .hero-roles { text-align: left; }
     nav { padding: 1.25rem 1.5rem; }
     .nav-links { gap: 1rem; }
-    .bottom-bar { flex-direction: column; gap: 1rem; text-align: center; }
-    .modal-backdrop { padding: 1rem; }
-    .modal-controls { flex-wrap: wrap; gap: 0.75rem; }
+    .bottom-bar { flex-direction: column; gap: 1rem; }
   }
 </style>
 </head>
@@ -388,100 +100,49 @@
 <nav>
   <div class="logo">Daniel Casabé</div>
   <div class="nav-links">
-    <a class="nav-link" href="#trabajos">Trabajos</a>
-    <a class="nav-link" href="#acerca">Acerca</a>
-    <a class="nav-contact" href="mailto:daniel@casabe.com">Contacto</a>
+    <button class="nav-about" onclick="openAbout()">Acerca</button>
   </div>
 </nav>
 
 <div class="hero">
-  <div class="hero-name">Director<br><em>&amp; montajista</em></div>
-  <div class="hero-role">Buenos Aires<br>Dirección<br>Montaje<br>Producción</div>
+  <div class="hero-name">Daniel Casabé</div>
+  <div class="hero-roles">Director<br>Montajista</div>
 </div>
 
-<div id="trabajos" class="grid">
-  <div class="cell" onclick="openModal(0)"><div class="cell-inner"><div class="cell-bg c0" id="bg0"></div><div class="cell-overlay"><div class="play-ring"><div class="play-tri"></div></div></div></div><div class="cell-num">01</div></div>
-  <div class="cell" onclick="openModal(1)"><div class="cell-inner"><div class="cell-bg c1" id="bg1"></div><div class="cell-overlay"><div class="play-ring"><div class="play-tri"></div></div></div></div><div class="cell-num">02</div></div>
-  <div class="cell" onclick="openModal(2)"><div class="cell-inner"><div class="cell-bg c2" id="bg2"></div><div class="cell-overlay"><div class="play-ring"><div class="play-tri"></div></div></div></div><div class="cell-num">03</div></div>
-  <div class="cell" onclick="openModal(3)"><div class="cell-inner"><div class="cell-bg c3" id="bg3"></div><div class="cell-overlay"><div class="play-ring"><div class="play-tri"></div></div></div></div><div class="cell-num">04</div></div>
-  <div class="cell" onclick="openModal(4)"><div class="cell-inner"><div class="cell-bg c4" id="bg4"></div><div class="cell-overlay"><div class="play-ring"><div class="play-tri"></div></div></div></div><div class="cell-num">05</div></div>
-  <div class="cell" onclick="openModal(5)"><div class="cell-inner"><div class="cell-bg c5" id="bg5"></div><div class="cell-overlay"><div class="play-ring"><div class="play-tri"></div></div></div></div><div class="cell-num">06</div></div>
+<div id="publicidad">
+  <div class="section-header"><span class="section-title">Publicidad</span><span class="section-line"></span></div>
+  <div class="grid" id="publi-grid"></div>
 </div>
 
-<!-- ABOUT -->
-<section class="about" id="acerca">
-  <div class="about-left">
-    <div class="about-label">Acerca</div>
-    <div class="about-name">
-      Daniel Casabé
-      <em>Director, montajista<br>y productor de cine</em>
-    </div>
-    <div class="about-credits">
-      <div class="credit-item">
-        <span class="credit-year">2025</span>
-        <span class="credit-text">Making Of oficial de <strong>El Eternauta</strong> (Netflix) — dirección y edición junto a OBOL</span>
-      </div>
-      <div class="credit-item">
-        <span class="credit-year">2023</span>
-        <span class="credit-text"><strong>La Sudestada</strong> — Competencia Oficial, Festival Internacional de Rotterdam. Dos premios en el BAFICI</span>
-      </div>
-      <div class="credit-item">
-        <span class="credit-year">2012</span>
-        <span class="credit-text"><strong>La forma exacta de las islas</strong> — Competencia Latinoamericana, Festival de Mar del Plata. Premio FEISAL, La Habana</span>
-      </div>
-      <div class="credit-item">
-        <span class="credit-year">2011</span>
-        <span class="credit-text"><strong>Cracks de nácar</strong> — BAFICI. Nominación a los Premios Cóndor de Plata</span>
-      </div>
-      <div class="credit-item">
-        <span class="credit-year">—</span>
-        <span class="credit-text">Montaje con Mariano Llinás, Alejandro Fadel, Santiago Mitre, Ana Katz, Pablo Trapero</span>
-      </div>
-      <div class="credit-item">
-        <span class="credit-year">—</span>
-        <span class="credit-text">Asistente de <strong>Walter Murch</strong> en <strong>Tetro</strong> de Francis Ford Coppola</span>
-      </div>
-      <div class="credit-item">
-        <span class="credit-year">—</span>
-        <span class="credit-text">Docente de Montaje en la <strong>Universidad del Cine (FUC)</strong></span>
-      </div>
-    </div>
+<div id="cine" style="margin-top:4rem;">
+  <div class="section-header"><span class="section-title">Cine — Dirección y Montaje</span><span class="section-line"></span></div>
+  <div class="grid-vertical" id="cine-grid"><div class="coming">Próximamente</div></div>
+  <div style="padding:1.5rem 2.5rem 0;">
+    <a style="display:inline-flex;align-items:center;gap:0.75rem;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(232,228,220,0.4);border:1px solid rgba(232,228,220,0.12);padding:0.5rem 1.1rem;text-decoration:none;transition:all 0.25s;font-family:'Karla',sans-serif;" href="https://www.imdb.com/name/nm1443935/" target="_blank" onmouseover="this.style.color='#e8e4dc';this.style.borderColor='rgba(232,228,220,0.4)'" onmouseout="this.style.color='rgba(232,228,220,0.4)';this.style.borderColor='rgba(232,228,220,0.12)'">
+      <span style="background:#f5c518;color:#000;font-weight:700;font-size:0.6rem;padding:0.1rem 0.3rem;font-family:'Karla',sans-serif;">IMDb</span>
+      Ver perfil completo
+    </a>
   </div>
-
-  <div class="about-right">
-    <p class="about-bio">
-      Nació en Buenos Aires en 1979. Se recibió de Director Cinematográfico en la
-      <em>Universidad del Cine</em>, donde también fue docente de Montaje.
-      Trabaja el montaje no como técnica sino como <em>sistema</em> —
-      la estructura invisible que organiza el tiempo, la mirada y el sentido de cada película.
-    </p>
-    <p class="about-bio">
-      Su trayectoria atraviesa el documental, la ficción y la producción de contenidos
-      para plataformas internacionales, siempre desde una misma convicción:
-      <em>una película es un organismo de decisiones que dialogan en cada plano.</em>
-    </p>
-    <div class="about-quote">
-      <p>"En él conviven el oficio y la poesía, la velocidad operativa y la profundidad narrativa, el conocimiento técnico y la ética del tiempo."</p>
-    </div>
-  </div>
-</section>
+</div>
 
 <div class="bottom-bar">
-  <a href="mailto:daniel@casabe.com" class="bottom-email">daniel@casabe.com</a>
-  <div class="bottom-tag">el montaje como sistema</div>
+  <div class="bottom-contact">
+    <a href="mailto:dani.casabe@gmail.com" class="bottom-link">dani.casabe@gmail.com</a>
+    <a href="tel:+5491154090279" class="bottom-link">+54 9 11 5409 0279</a>
+    <a href="https://instagram.com/dani_casabe" target="_blank" class="bottom-link">@dani_casabe</a>
+  </div>
+  <div class="bottom-tag"></div>
 </div>
 
-<!-- MODAL -->
+<!-- VIDEO MODAL -->
 <div class="modal-backdrop" id="modal">
   <div class="modal-player">
     <iframe class="modal-iframe" id="iframe" allowfullscreen allow="autoplay; fullscreen"></iframe>
-    <div class="modal-placeholder" id="placeholder">
-      Agregá el link de Vimeo o YouTube<br>en el código para este slot
-    </div>
+    <div class="modal-placeholder" id="placeholder">Cargando...</div>
   </div>
   <div class="modal-controls">
     <button class="modal-close" onclick="closeModal()">✕ cerrar</button>
-    <div class="modal-counter" id="counter">01 / 06</div>
+    <div class="modal-title-label" id="modal-title"></div>
     <div class="modal-nav">
       <button onclick="navModal(-1)">← anterior</button>
       <button onclick="navModal(1)">siguiente →</button>
@@ -489,100 +150,120 @@
   </div>
 </div>
 
-<script>
-  /*
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  CÓMO AGREGAR TUS VIDEOS
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  Reemplazá null por el link de Vimeo o YouTube
-  de cada pieza. Ejemplos:
+<!-- ABOUT OVERLAY -->
+<div class="about-overlay" id="about-overlay">
+  <div class="about-box">
+    <button class="about-close" onclick="closeAbout()">✕ cerrar</button>
+    <div class="about-name-big">Daniel Casabé</div>
+    <div class="about-tagline"></div>
+    <p class="about-text">Daniel Casabé nació en 1979 en Buenos Aires, Argentina. Cursó el colegio secundario en el Nacional Buenos Aires y se recibió de Director Cinematográfico en la Universidad del Cine (FUC) en dónde también fue docente de Montaje.</p>
+    <p class="about-text">Participó en la edición y post-producción de largometrajes de directores como Mariano Llinás, Alejandro Fadel, Santiago Mitre, Ana Katz y Pablo Trapero. Formó parte del equipo de montaje de "Tetro", de Francis Ford Coppola, como asistente de Walter Murch.</p>
+    <p class="about-text">En 2011 dirigió su primer largometraje documental junto a Edgardo Dieleke: Cracks de nácar, estrenada en el XIII BAFICI, participando en importantes festivales internacionales hasta su estreno, que culminó con la nominación a los Premios Cóndor de Plata a mejor largometraje documental del año.</p>
+    <p class="about-text">En 2012 dirigió su segundo largometraje documental junto a Edgardo Dieleke: La forma exacta de las islas, que tuvo su estreno en el 27 Festival Internacional de Cine de Mar del Plata dentro de la Competencia Latinoamericana, para recibir luego el Premio Mención FEISAL en el 34 Festival de Cine Latinoamericano de La Habana. En septiembre de 2014 fue nominada para los Premios Sur como mejor documental del año.</p>
+    <p class="about-text">En 2023 dirigió, también junto a Edgardo Dieleke, la película de ficción La Sudestada, basada en la premiada historieta gráfica homónima de Juan Sáenz Valiente, que fue estrenada en la Competencia Oficial del Festival Internacional de Rotterdam. Luego tuvo su estreno en la Competencia Internacional del 24 BAFICI en donde obtuvo dos premios oficiales para luego comercializarse oficialmente en salas de todo el país.</p>
+    <p class="about-text">Además de su trabajo en La Sudestada, Casabé dirigió y editó el Making Of oficial de la serie El Eternauta (Netflix, 2025), junto a la productora OBOL, aportando piezas de difusión clave para la promoción de esta producción emblemática.</p>
+    <p class="about-text">"Daniel Casabé no es sólo un montajista sensible ni un director con mirada estética. Es un cineasta con conciencia técnica integral, capaz de intervenir en todas las etapas del proceso cinematográfico con conocimiento preciso, actualizado y eficaz. Su formación múltiple (editor, fotógrafo, operador de cámara, postproductor) le permite entender una película no como un objeto aislado, sino como un sistema orgánico de decisiones visuales, sonoras y técnicas que dialogan en cada plano. En él conviven el oficio y la poesía, la velocidad operativa y la profundidad narrativa, el conocimiento técnico y la ética del tiempo."</p>
+    <a class="about-imdb" href="https://www.imdb.com/name/nm1443935/" target="_blank">
+      <span class="imdb-badge">IMDb</span>
+      Ver perfil completo
+    </a>
+  </div>
+</div>
 
-    Vimeo:   'https://vimeo.com/123456789'
-    YouTube: 'https://youtu.be/dQw4w9WgXcQ'
-
-  Para agregar imagen de portada a cada celda,
-  reemplazá null en THUMBNAILS con la URL de la imagen.
+<script>  /*
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  VIDEOS — agregar con { id: 'vimeoID', title: 'Título' }
+  Para YouTube usar { youtube: 'youtubeID', title: 'Título' }
   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   */
-
-  const VIDEOS = [
-    'https://vimeo.com/1190896723', /* 01 - Eternauta 01 */
-    'https://vimeo.com/1190896788', /* 02 - Eternauta 02 */
-    'https://vimeo.com/1190896898', /* 03 - Eternauta 03 */
-    'https://vimeo.com/1190893270', /* 04 - Adidas Bad Bunny BadBo */
-    'https://vimeo.com/1190893998', /* 05 - Adidas Bad Bunny Vaquero */
-    'https://vimeo.com/1190897022'  /* 06 - Adidas Letters Messi + Bad Bunny */
+  const PUBLI = [
+    { id: '1190893270', title: 'Adidas · Bad Bunny BadBo' },
+    { id: '1190893998', title: 'Adidas · Bad Bunny Vaquero' },
+    { id: '1190897022', title: 'Adidas · Letters — Messi + Bad Bunny' },
+    { id: '1190897077', title: 'Adidas · Bad Bunny Global Vaquero' },
+    { id: '1190897127', title: 'Adidas · AFA Mundial 2026 Truco' },
+    { id: '1190897180', title: 'Adidas · AFA 50 Años Nueva Camiseta' },
+    { id: '1190897310', title: 'Adidas · Edison Chen' },
+    { id: '1190897350', title: 'Adidas · You Got This — Gabriel Jesus' },
+    { id: '1190897371', title: 'Adidas · Global Chen Black 2024' },
+    { id: '1190897396', title: 'Adidas · Boca H&A 2025 Argentina' },
+    { id: '1190897439', title: 'Adidas · Colombia Mundial 2026 Realismo Mágico' },
+    { id: '1190897467', title: 'Adidas · Copa America 2021' },
+    { id: '1190897490', title: 'Adidas · Colo-Colo Chile SPT' },
+    { id: '1190897502', title: 'Adidas · Colombia Copa America 2020' },
+    { id: '1190897524', title: 'Adidas · Maradona Boca' },
+    { id: '1190897538', title: 'Adidas · Forum Colombia' },
+    { id: '1190897567', title: 'Adidas · Forum Peru' },
+    { id: '1190897614', title: 'Adidas · River Boca Ready For Sport' },
+    { id: '1190897632', title: 'Adidas · Boca Ready For Sport' },
+    { id: '1190897642', title: 'Adidas · Forum Mexico' },
+    { id: '1191000595', title: 'Modo · Mejor con Modo 2025' },
+    { id: '1191006814', title: 'Mercado Libre Chile · Comprar Online' },
+    { id: '1191006863', title: 'Mercado Libre Chile · Invierno' },
+    { id: '1191006904', title: 'Mercado Libre Chile · Cyber' },
   ];
 
-  const THUMBNAILS = [
-    null, /* 01 */
-    null, /* 02 */
-    null, /* 03 */
-    null, /* 04 */
-    null, /* 05 */
-    null  /* 06 */
+  const CINE = [
+    { id: '1191398977', title: 'La Sudestada — Dir. Daniel Casabé y Edgardo Dieleke · 2023', poster: 'https://danicasabe728746.github.io/danielcasabe/img:001%20LA%20SUDESTADA%202023.jpg' },
+    { id: '1191398975', title: 'La Forma Exacta de las Islas — Dir. Daniel Casabé y Edgardo Dieleke · 2012', poster: 'https://danicasabe728746.github.io/danielcasabe/img:002%20LA%20FORMA%20EXACTA%20DE%20LAS%20ISLAS%202014.jpg' },
+    { id: '1191398974', title: 'Cracks de Nácar — Dir. Daniel Casabé y Edgardo Dieleke · 2011', poster: 'https://danicasabe728746.github.io/danielcasabe/img:003%20CRACKS%20DE%20NACAR%202012.jpg' },
+    { id: '1190896723', title: 'Netflix · El Eternauta — Adapting the Eternaut · 2025' },
+    { id: '1190896788', title: 'Netflix · El Eternauta — Building the Apocalypse · 2025' },
+    { id: '1190896898', title: 'Netflix · El Eternauta — The Collective Hero · 2025' },
   ];
 
-  /* ━━ No hace falta tocar nada de acá para abajo ━━ */
+  /* ━━ No tocar abajo ━━ */
+  let currentList = [];
+  let currentIdx = 0;
 
-  const embedCache = {};
-  let current = 0;
-
-  function getVimeoId(url) {
-    const m = url.match(/vimeo\.com\/(\d+)/);
-    return m ? m[1] : null;
+  function buildGrid(list, containerId, vertical) {
+    const grid = document.getElementById(containerId);
+    if (!list.length) return;
+    grid.innerHTML = '';
+    if (vertical) grid.className = 'grid-vertical';
+    list.forEach((item, i) => {
+      const cell = document.createElement('div');
+      cell.className = 'cell';
+      cell.innerHTML = `
+        <div class="cell-inner">
+          <div class="cell-bg c${i % 14}" id="bg-${containerId}-${i}"></div>
+          <div class="cell-overlay"><div class="play-ring"><div class="play-tri"></div></div></div>
+        </div>
+        <div class="cell-info"><div class="cell-title">${item.title}</div></div>`;
+      cell.onclick = () => openModal(list, i);
+      grid.appendChild(cell);
+    });
+    loadThumbnails(list, containerId);
   }
 
-  function getEmbed(raw) {
-    if (!raw) return null;
-    if (embedCache[raw]) return embedCache[raw];
-    let url = null;
-    const vm = raw.match(/vimeo\.com\/(\d+)/);
-    if (vm) url = 'https://player.vimeo.com/video/' + vm[1] + '?autoplay=1&color=e8e4dc&byline=0&portrait=0&title=0';
-    const yt = raw.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([A-Za-z0-9_-]{11})/);
-    if (yt) url = 'https://www.youtube.com/embed/' + yt[1] + '?autoplay=1&rel=0&modestbranding=1';
-    embedCache[raw] = url;
-    return url;
-  }
-
-  async function loadVimeoThumbnails() {
-    VIDEOS.forEach(async (videoUrl, i) => {
-      if (!videoUrl) return;
-      const id = getVimeoId(videoUrl);
-      if (!id) return;
-      // Si hay thumbnail manual, usarla
-      if (THUMBNAILS[i]) {
-        const bg = document.getElementById('bg' + i);
-        if (bg) { bg.style.backgroundImage = 'url(' + THUMBNAILS[i] + ')'; bg.style.backgroundSize = 'cover'; }
+  async function loadThumbnails(list, containerId) {
+    list.forEach(async (item, i) => {
+      const bg = document.getElementById(`bg-${containerId}-${i}`);
+      if (!bg) return;
+      if (item.poster) {
+        bg.style.backgroundImage = `url(${item.poster})`;
+        bg.style.backgroundSize = 'cover';
         return;
       }
-      // Si no, buscar thumbnail de Vimeo via oEmbed (no requiere API key)
+      if (!item.id) return;
       try {
-        const res = await fetch('https://vimeo.com/api/oembed.json?url=https://vimeo.com/' + id + '&width=640');
+        const res = await fetch(`https://vimeo.com/api/oembed.json?url=https://vimeo.com/${item.id}&width=640`);
         const data = await res.json();
         if (data.thumbnail_url) {
-          const bg = document.getElementById('bg' + i);
-          if (bg) {
-            bg.style.backgroundImage = 'url(' + data.thumbnail_url + ')';
-            bg.style.backgroundSize = 'cover';
-            bg.style.backgroundPosition = 'center';
-          }
+          bg.style.backgroundImage = `url(${data.thumbnail_url})`;
+          bg.style.backgroundSize = 'cover';
         }
       } catch(e) {}
     });
   }
 
-  function applyThumbnails() {
-    THUMBNAILS.forEach((t, i) => {
-      if (t) {
-        const bg = document.getElementById('bg' + i);
-        if (bg) { bg.style.backgroundImage = 'url(' + t + ')'; bg.style.backgroundSize = 'cover'; }
-      }
-    });
+  function getEmbed(item) {
+    if (item.youtube) return `https://www.youtube.com/embed/${item.youtube}?autoplay=1&rel=0&modestbranding=1`;
+    return `https://player.vimeo.com/video/${item.id}?autoplay=1&color=e8e4dc&byline=0&portrait=0&title=0`;
   }
 
-  function openModal(idx) {
-    current = idx;
+  function openModal(list, idx) {
+    currentList = list; currentIdx = idx;
     document.getElementById('modal').classList.add('open');
     document.body.style.overflow = 'hidden';
     renderPlayer();
@@ -592,47 +273,39 @@
     document.getElementById('modal').classList.remove('open');
     document.body.style.overflow = '';
     const iframe = document.getElementById('iframe');
-    iframe.src = '';
-    iframe.classList.remove('loaded');
+    iframe.src = ''; iframe.classList.remove('loaded');
   }
 
   function navModal(dir) {
-    current = (current + dir + VIDEOS.length) % VIDEOS.length;
+    currentIdx = (currentIdx + dir + currentList.length) % currentList.length;
     const iframe = document.getElementById('iframe');
-    iframe.src = '';
-    iframe.classList.remove('loaded');
+    iframe.src = ''; iframe.classList.remove('loaded');
     renderPlayer();
   }
 
   function renderPlayer() {
+    const item = currentList[currentIdx];
     const iframe = document.getElementById('iframe');
-    const ph = document.getElementById('placeholder');
-    const counter = document.getElementById('counter');
-    counter.textContent = String(current + 1).padStart(2, '0') + ' / ' + String(VIDEOS.length).padStart(2, '0');
-    const embed = getEmbed(VIDEOS[current]);
-    if (embed) {
-      iframe.src = embed;
-      iframe.classList.add('loaded');
-      ph.style.display = 'none';
-    } else {
-      iframe.src = '';
-      iframe.classList.remove('loaded');
-      ph.style.display = 'block';
-    }
+    iframe.src = getEmbed(item);
+    iframe.classList.add('loaded');
+    document.getElementById('placeholder').style.display = 'none';
+    document.getElementById('modal-title').textContent = item.title;
   }
 
+  function openAbout() { document.getElementById('about-overlay').classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeAbout() { document.getElementById('about-overlay').classList.remove('open'); document.body.style.overflow = ''; }
+
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeModal();
+    if (e.key === 'Escape') { closeModal(); closeAbout(); }
     if (e.key === 'ArrowRight') navModal(1);
     if (e.key === 'ArrowLeft') navModal(-1);
   });
 
-  document.getElementById('modal').addEventListener('click', function(e) {
-    if (e.target === this) closeModal();
-  });
+  document.getElementById('modal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+  document.getElementById('about-overlay').addEventListener('click', function(e) { if (e.target === this) closeAbout(); });
 
-  applyThumbnails();
-  loadVimeoThumbnails();
+  buildGrid(PUBLI, 'publi-grid');
+  if (CINE.length) buildGrid(CINE, 'cine-grid', true);
 </script>
 </body>
 </html>
