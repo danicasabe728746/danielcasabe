@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Daniel Casabé — Director & Montajista</title>
+<title>Daniel Casabé — Director & Editor</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Karla:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -47,6 +47,19 @@
   .c12{background-color:#0d0e0b}.c13{background-color:#0e0d0d}
 
   .coming { grid-column: span 3; padding: 3rem 2.5rem; font-family: 'Cormorant', serif; font-style: italic; font-size: 1rem; color: rgba(232,228,220,0.12); }
+  .lang-switch { display: flex; gap: 0.5rem; align-items: center; }
+  .lang-btn { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(232,228,220,0.35); background: none; border: none; cursor: pointer; font-family: 'Karla', sans-serif; padding: 0.2rem 0.4rem; transition: color 0.25s; }
+  .lang-btn.active { color: var(--white); border-bottom: 1px solid rgba(232,228,220,0.5); }
+  .lang-btn:hover { color: var(--white); }
+  .lang-sep { color: rgba(232,228,220,0.15); font-size: 0.65rem; }
+
+  /* EDITING LIST */
+  .editing-list { padding: 2rem 2.5rem 0; max-width: 900px; }
+  .editing-item { display: flex; align-items: center; gap: 1.5rem; padding: 1rem 0; border-bottom: 1px solid var(--line); }
+  .editing-poster { width: 42px; height: 62px; object-fit: cover; flex-shrink: 0; background: #111; }
+  .editing-info { flex: 1; }
+  .editing-title { font-family: 'Cormorant', serif; font-size: 1rem; color: var(--white); font-weight: 300; }
+  .editing-meta { font-size: 0.65rem; letter-spacing: 0.1em; color: rgba(232,228,220,0.35); margin-top: 0.2rem; }
   .grid-vertical { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); margin-top: 1.5rem; max-width: 900px; margin-left: 0; margin-right: auto; }
   .grid-vertical .cell-inner { width: 100%; padding-bottom: 148%; position: relative; overflow: hidden; }
 
@@ -100,29 +113,82 @@
 <nav>
   <div class="logo">Daniel Casabé</div>
   <div class="nav-links">
-    <button class="nav-about" onclick="openAbout()">Acerca</button>
+    <div class="lang-switch">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
+    </div>
+    <button class="nav-about" id="btn-about" onclick="openAbout()">About</button>
   </div>
 </nav>
 
 <div class="hero">
   <div class="hero-name">Daniel Casabé</div>
-  <div class="hero-roles">Director<br>Montajista</div>
-</div>
-
-<div id="publicidad">
-  <div class="section-header"><span class="section-title">Publicidad</span><span class="section-line"></span></div>
-  <div class="grid" id="publi-grid"></div>
+  <div class="hero-roles">Director<br>Editor</div>
 </div>
 
 <div id="cine" style="margin-top:4rem;">
-  <div class="section-header"><span class="section-title">Cine — Dirección y Montaje</span><span class="section-line"></span></div>
-  <div class="grid-vertical" id="cine-grid"><div class="coming">Próximamente</div></div>
+  <div class="section-header"><span class="section-title" data-en="Film — Direction & Editing" data-es="Cine — Dirección y Montaje">Film — Direction & Editing</span><span class="section-line"></span></div>
+  <div class="grid-vertical" id="cine-grid"><div class="coming">Coming soon</div></div>
+
+  <!-- EDITING LIST -->
+  <div class="editing-list" id="editing-list" style="margin-top:2rem;">
+    <div style="font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:rgba(232,228,220,0.25);margin-bottom:1rem;" id="editing-label">Editor</div>
+    <div class="editing-item">
+      <img class="editing-poster" src="https://danicasabe728746.github.io/danielcasabe/LA_ESTRELLA_QUE_PERDI.png" alt="">
+      <div class="editing-info">
+        <div class="editing-title">La estrella que perdí</div>
+        <div class="editing-meta">Editor · 2024</div>
+      </div>
+    </div>
+    <div class="editing-item">
+      <img class="editing-poster" src="https://danicasabe728746.github.io/danielcasabe/PARTE_DE_UNA_RELIGION.png" alt="">
+      <div class="editing-info">
+        <div class="editing-title">Parte de una religión</div>
+        <div class="editing-meta">Editor · TV Mini Series · 2021</div>
+      </div>
+    </div>
+    <div class="editing-item">
+      <img class="editing-poster" src="https://danicasabe728746.github.io/danielcasabe/ROMPIENTE.png" alt="">
+      <div class="editing-info">
+        <div class="editing-title">Rompiente</div>
+        <div class="editing-meta">Editor · 2020</div>
+      </div>
+    </div>
+    <div class="editing-item">
+      <img class="editing-poster" src="https://danicasabe728746.github.io/danielcasabe/ARTE_ARTE_ARTE.png" alt="">
+      <div class="editing-info">
+        <div class="editing-title">Arte arte arte: El partenón de los libros perdidos de Marta Minujin</div>
+        <div class="editing-meta">Editor · Short · 2018</div>
+      </div>
+    </div>
+    <div class="editing-item">
+      <img class="editing-poster" src="https://danicasabe728746.github.io/danielcasabe/AL_DESIERTO.png" alt="">
+      <div class="editing-info">
+        <div class="editing-title">Al Desierto</div>
+        <div class="editing-meta">Editor · 2017</div>
+      </div>
+    </div>
+    <div class="editing-item">
+      <img class="editing-poster" src="https://danicasabe728746.github.io/danielcasabe/LOS_QUE_VUELVEN.png" alt="">
+      <div class="editing-info">
+        <div class="editing-title">Los que vuelven</div>
+        <div class="editing-meta">Editor · 2020</div>
+      </div>
+    </div>
+  </div>
+
   <div style="padding:1.5rem 2.5rem 0;">
     <a style="display:inline-flex;align-items:center;gap:0.75rem;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(232,228,220,0.4);border:1px solid rgba(232,228,220,0.12);padding:0.5rem 1.1rem;text-decoration:none;transition:all 0.25s;font-family:'Karla',sans-serif;" href="https://www.imdb.com/name/nm1443935/" target="_blank" onmouseover="this.style.color='#e8e4dc';this.style.borderColor='rgba(232,228,220,0.4)'" onmouseout="this.style.color='rgba(232,228,220,0.4)';this.style.borderColor='rgba(232,228,220,0.12)'">
       <span style="background:#f5c518;color:#000;font-weight:700;font-size:0.6rem;padding:0.1rem 0.3rem;font-family:'Karla',sans-serif;">IMDb</span>
-      Ver perfil completo
+      <span data-en="Full profile" data-es="Ver perfil completo">Full profile</span>
     </a>
   </div>
+</div>
+
+<div id="publicidad" style="margin-top:4rem;">
+  <div class="section-header"><span class="section-title" data-en="Advertising" data-es="Publicidad">Advertising</span><span class="section-line"></span></div>
+  <div class="grid" id="publi-grid"></div>
 </div>
 
 <div class="bottom-bar">
@@ -138,14 +204,14 @@
 <div class="modal-backdrop" id="modal">
   <div class="modal-player">
     <iframe class="modal-iframe" id="iframe" allowfullscreen allow="autoplay; fullscreen"></iframe>
-    <div class="modal-placeholder" id="placeholder">Cargando...</div>
+    <div class="modal-placeholder" id="placeholder">Loading...</div>
   </div>
   <div class="modal-controls">
-    <button class="modal-close" onclick="closeModal()">✕ cerrar</button>
+    <button class="modal-close" onclick="closeModal()">✕ close</button>
     <div class="modal-title-label" id="modal-title"></div>
     <div class="modal-nav">
-      <button onclick="navModal(-1)">← anterior</button>
-      <button onclick="navModal(1)">siguiente →</button>
+      <button onclick="navModal(-1)">← prev</button>
+      <button onclick="navModal(1)">next →</button>
     </div>
   </div>
 </div>
@@ -153,19 +219,19 @@
 <!-- ABOUT OVERLAY -->
 <div class="about-overlay" id="about-overlay">
   <div class="about-box">
-    <button class="about-close" onclick="closeAbout()">✕ cerrar</button>
+    <button class="about-close" onclick="closeAbout()">✕ close</button>
     <div class="about-name-big">Daniel Casabé</div>
     <div class="about-tagline"></div>
-    <p class="about-text">Daniel Casabé nació en 1979 en Buenos Aires, Argentina. Cursó el colegio secundario en el Nacional Buenos Aires y se recibió de Director Cinematográfico en la Universidad del Cine (FUC) en dónde también fue docente de Montaje.</p>
-    <p class="about-text">Participó en la edición y post-producción de largometrajes de directores como Mariano Llinás, Alejandro Fadel, Santiago Mitre, Ana Katz y Pablo Trapero. Formó parte del equipo de montaje de "Tetro", de Francis Ford Coppola, como asistente de Walter Murch.</p>
-    <p class="about-text">En 2011 dirigió su primer largometraje documental junto a Edgardo Dieleke: Cracks de nácar, estrenada en el XIII BAFICI, participando en importantes festivales internacionales hasta su estreno, que culminó con la nominación a los Premios Cóndor de Plata a mejor largometraje documental del año.</p>
-    <p class="about-text">En 2012 dirigió su segundo largometraje documental junto a Edgardo Dieleke: La forma exacta de las islas, que tuvo su estreno en el 27 Festival Internacional de Cine de Mar del Plata dentro de la Competencia Latinoamericana, para recibir luego el Premio Mención FEISAL en el 34 Festival de Cine Latinoamericano de La Habana. En septiembre de 2014 fue nominada para los Premios Sur como mejor documental del año.</p>
-    <p class="about-text">En 2023 dirigió, también junto a Edgardo Dieleke, la película de ficción La Sudestada, basada en la premiada historieta gráfica homónima de Juan Sáenz Valiente, que fue estrenada en la Competencia Oficial del Festival Internacional de Rotterdam. Luego tuvo su estreno en la Competencia Internacional del 24 BAFICI en donde obtuvo dos premios oficiales para luego comercializarse oficialmente en salas de todo el país.</p>
-    <p class="about-text">Además de su trabajo en La Sudestada, Casabé dirigió y editó el Making Of oficial de la serie El Eternauta (Netflix, 2025), junto a la productora OBOL, aportando piezas de difusión clave para la promoción de esta producción emblemática.</p>
-    <p class="about-text">"Daniel Casabé no es sólo un montajista sensible ni un director con mirada estética. Es un cineasta con conciencia técnica integral, capaz de intervenir en todas las etapas del proceso cinematográfico con conocimiento preciso, actualizado y eficaz. Su formación múltiple (editor, fotógrafo, operador de cámara, postproductor) le permite entender una película no como un objeto aislado, sino como un sistema orgánico de decisiones visuales, sonoras y técnicas que dialogan en cada plano. En él conviven el oficio y la poesía, la velocidad operativa y la profundidad narrativa, el conocimiento técnico y la ética del tiempo."</p>
+    <p class="about-text">Daniel Casabé was born in 1979 in Buenos Aires, Argentina. He attended the Nacional Buenos Aires high school and graduated as a Film Director from the Universidad del Cine (FUC), where he also taught Editing.</p>
+    <p class="about-text">He participated in the editing and post-production of feature films by directors such as Mariano Llinás, Alejandro Fadel, Santiago Mitre, Ana Katz and Pablo Trapero. He was part of the editing team of "Tetro" by Francis Ford Coppola, as assistant to Walter Murch.</p>
+    <p class="about-text">In 2011 he co-directed his first documentary feature with Edgardo Dieleke: Cracks de nácar, premiered at the XIII BAFICI and nominated for the Cóndor de Plata Award for best documentary of the year.</p>
+    <p class="about-text">In 2012 he co-directed La forma exacta de las islas, which premiered at the 27th Mar del Plata International Film Festival in the Latin American Competition, and received the FEISAL Award at the 34th Latin American Film Festival in Havana. In 2014 it was nominated for the Premios Sur as best documentary of the year.</p>
+    <p class="about-text">In 2023 he co-directed the fiction feature La Sudestada, based on the award-winning graphic novel by Juan Sáenz Valiente, which premiered in Official Competition at the International Film Festival Rotterdam, then won two official awards at the 24th BAFICI before its theatrical release across Argentina.</p>
+    <p class="about-text">Casabé also directed and edited the official Making Of of the series El Eternauta (Netflix, 2025), together with production company OBOL, delivering key promotional content for this landmark production.</p>
+    <p class="about-text">"Daniel Casabé is not merely a sensitive editor nor a director with an aesthetic eye. He is a filmmaker with comprehensive technical awareness, capable of intervening at every stage of the filmmaking process with precise, current and effective knowledge. His multiple training (editor, photographer, camera operator, post-producer) allows him to understand a film not as an isolated object, but as an organic system of visual, sonic and technical decisions that dialogue in every frame. In him, craft and poetry coexist, operational speed and narrative depth, technical knowledge and the ethics of time."</p>
     <a class="about-imdb" href="https://www.imdb.com/name/nm1443935/" target="_blank">
       <span class="imdb-badge">IMDb</span>
-      Ver perfil completo
+      Full profile
     </a>
   </div>
 </div>
@@ -204,9 +270,9 @@
   ];
 
   const CINE = [
-    { id: '1191398977', title: 'La Sudestada — Dir. Daniel Casabé y Edgardo Dieleke · 2023', poster: 'https://danicasabe728746.github.io/danielcasabe/img:001%20LA%20SUDESTADA%202023.jpg' },
-    { id: '1191398975', title: 'La Forma Exacta de las Islas — Dir. Daniel Casabé y Edgardo Dieleke · 2012', poster: 'https://danicasabe728746.github.io/danielcasabe/img:002%20LA%20FORMA%20EXACTA%20DE%20LAS%20ISLAS%202014.jpg' },
-    { id: '1191398974', title: 'Cracks de Nácar — Dir. Daniel Casabé y Edgardo Dieleke · 2011', poster: 'https://danicasabe728746.github.io/danielcasabe/img:003%20CRACKS%20DE%20NACAR%202012.jpg' },
+    { id: '1191398977', title: 'La Sudestada — Dir. Daniel Casabé & Edgardo Dieleke · 2023', poster: 'https://danicasabe728746.github.io/danielcasabe/img:001%20LA%20SUDESTADA%202023.jpg' },
+    { id: '1191398975', title: 'La Forma Exacta de las Islas — Dir. Daniel Casabé & Edgardo Dieleke · 2012', poster: 'https://danicasabe728746.github.io/danielcasabe/img:002%20LA%20FORMA%20EXACTA%20DE%20LAS%20ISLAS%202014.jpg' },
+    { id: '1191398974', title: 'Cracks de Nácar — Dir. Daniel Casabé & Edgardo Dieleke · 2011', poster: 'https://danicasabe728746.github.io/danielcasabe/img:003%20CRACKS%20DE%20NACAR%202012.jpg' },
     { id: '1190896723', title: 'Netflix · El Eternauta — Adapting the Eternaut · 2025' },
     { id: '1190896788', title: 'Netflix · El Eternauta — Building the Apocalypse · 2025' },
     { id: '1190896898', title: 'Netflix · El Eternauta — The Collective Hero · 2025' },
@@ -294,6 +360,48 @@
 
   function openAbout() { document.getElementById('about-overlay').classList.add('open'); document.body.style.overflow = 'hidden'; }
   function closeAbout() { document.getElementById('about-overlay').classList.remove('open'); document.body.style.overflow = ''; }
+
+  // LANGUAGE SWITCHER
+  const translations = {
+    en: {
+      about: 'About',
+      close: '✕ close',
+      prev: '← prev',
+      next: 'next →',
+      editor: 'Editor',
+      heroRoles: 'Director<br>Editor',
+    },
+    es: {
+      about: 'Acerca',
+      close: '✕ cerrar',
+      prev: '← anterior',
+      next: 'siguiente →',
+      editor: 'Montajista',
+      heroRoles: 'Director<br>Montajista',
+    }
+  };
+
+  function setLang(lang) {
+    const t = translations[lang];
+    // Nav
+    document.getElementById('btn-about').textContent = t.about;
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+    // Hero
+    document.querySelector('.hero-roles').innerHTML = t.heroRoles;
+    // Modal buttons
+    document.querySelector('.modal-close').textContent = t.close;
+    document.querySelectorAll('.modal-nav button')[0].textContent = t.prev;
+    document.querySelectorAll('.modal-nav button')[1].textContent = t.next;
+    // About close
+    document.querySelector('.about-close').textContent = t.close;
+    // Editing label
+    document.getElementById('editing-label').textContent = t.editor;
+    // data-en / data-es elements
+    document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+      el.textContent = el.getAttribute('data-' + lang);
+    });
+  }
 
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') { closeModal(); closeAbout(); }
