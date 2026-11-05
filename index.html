@@ -312,9 +312,9 @@
     { id: '1191398977', title: 'La Sudestada — Dir. Daniel Casabé & Edgardo Dieleke · 2023', poster: 'https://danicasabe728746.github.io/danielcasabe/img:001%20LA%20SUDESTADA%202023.jpg' },
     { id: '1191398975', title: 'La Forma Exacta de las Islas — Dir. Daniel Casabé & Edgardo Dieleke · 2012', poster: 'https://danicasabe728746.github.io/danielcasabe/img:002%20LA%20FORMA%20EXACTA%20DE%20LAS%20ISLAS%202014.jpg' },
     { id: '1191398974', title: 'Cracks de Nácar — Dir. Daniel Casabé & Edgardo Dieleke · 2011', poster: 'https://danicasabe728746.github.io/danielcasabe/img:003%20CRACKS%20DE%20NACAR%202012.jpg' },
-    { id: '1190896723', title: 'Netflix · El Eternauta — Adapting the Eternaut · 2025', poster: 'https://danicasabe728746.github.io/danielcasabe/ETERNAUTA.jpg', ratio: 125 },
-    { id: '1190896788', title: 'Netflix · El Eternauta — Building the Apocalypse · 2025', poster: 'https://danicasabe728746.github.io/danielcasabe/ETERNAUTA2.jpg', ratio: 125 },
-    { id: '1190896898', title: 'Netflix · El Eternauta — The Collective Hero · 2025', poster: 'https://danicasabe728746.github.io/danielcasabe/ETERNAUTA3.jpg', ratio: 125 },
+    { id: '1190896723', title: 'Netflix · El Eternauta — Adapting the Eternaut · 2025', poster: 'https://danicasabe728746.github.io/danielcasabe/ETERNAUTA.jpg', pos: '80% 50%' },
+    { id: '1190896788', title: 'Netflix · El Eternauta — Building the Apocalypse · 2025', poster: 'https://danicasabe728746.github.io/danielcasabe/ETERNAUTA2.jpg' },
+    { id: '1190896898', title: 'Netflix · El Eternauta — The Collective Hero · 2025', poster: 'https://danicasabe728746.github.io/danielcasabe/ETERNAUTA3.jpg', pos: '80% 50%' },
   ];
 
   /* ━━ No tocar abajo ━━ */
@@ -348,6 +348,7 @@
       if (item.poster) {
         bg.style.backgroundImage = `url(${item.poster})`;
         bg.style.backgroundSize = 'cover';
+        if (item.pos) bg.style.backgroundPosition = item.pos;
         return;
       }
       if (!item.id) return;
