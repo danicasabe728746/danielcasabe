@@ -182,16 +182,16 @@
   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   */
   const TRAILERS = [
-    { id: '', title: 'El Invierno', meta: '2016', award: 'Best Trailer · Mar del Plata IFF 2016' },
-    { id: '', title: 'Jauja', meta: '' },
+    { youtube: 'YM6NHUXCHhs', title: 'El Invierno', meta: '2016', award: 'Best Trailer · Mar del Plata IFF 2016' },
+    { youtube: 'MLvd4gyHNJ4', title: 'Jauja', meta: '' },
     { id: '1191398977', title: 'La Sudestada', meta: 'Dir. Daniel Casabé & Edgardo Dieleke · 2023' },
-    { id: '', title: 'Norma', meta: '' },
-    { id: '', title: 'Al Desierto', meta: '' },
-    { id: '', title: 'Los que vuelven', meta: '' },
-    { id: '', title: 'Yo Niña', meta: '' },
+    { youtube: 'eXeGdL8HPC8', title: 'Norma', meta: '' },
+    { youtube: 'CWdEzK52Wkw', title: 'Al Desierto', meta: '' },
+    { youtube: '-YbwPl2xrZs', title: 'Los que vuelven', meta: '' },
+    { youtube: 'EoLgemzE-Jg', title: 'Yo Niña', meta: '' },
     { id: '1191398975', title: 'La Forma Exacta de las Islas', meta: 'Dir. Daniel Casabé & Edgardo Dieleke · 2012' },
     { id: '1191398974', title: 'Cracks de Nácar', meta: 'Dir. Daniel Casabé & Edgardo Dieleke · 2011' },
-    { id: '', title: 'Buena Vista Social Club II', meta: '' },
+    { youtube: 'w-kiSGgfRhY', title: 'Buena Vista Social Club: Adiós', meta: '' },
     { id: '', title: 'El Desierto', meta: '2014' },
     { id: '', title: 'Troncoso (Uruguay)', meta: '' },
     { id: '', title: 'Soy tu mensaje', meta: 'Ricky Jacobo' },
@@ -216,13 +216,14 @@
           ${item.award ? `<div class="award">★ ${item.award}</div>` : ''}</div>`;
       if (ok) cell.onclick = () => openModal(playable, playable.indexOf(item));
       grid.appendChild(cell);
-      if (item.id) loadThumb(item, i);
+      if (item.id || item.youtube) loadThumb(item, i);
     });
   }
 
   async function loadThumb(item, i) {
     const bg = document.getElementById('bg-' + i);
     if (item.poster) { bg.style.backgroundImage = `url(${item.poster})`; return; }
+    if (item.youtube) { bg.style.backgroundImage = `url(https://img.youtube.com/vi/${item.youtube}/hqdefault.jpg)`; return; }
     try {
       const res = await fetch(`https://vimeo.com/api/oembed.json?url=https://vimeo.com/${item.id}&width=640`);
       const data = await res.json();
