@@ -127,6 +127,12 @@
   .hero-title { font-family:'Cormorant',serif; font-size:clamp(2rem,5vw,3.2rem); font-weight:300; letter-spacing:0.05em; }
   #trailers-grid { background: transparent; gap: 0; }
   #trailers-grid .cell { box-shadow: 0 0 0 0.5px rgba(232,228,220,0.08); }
+  .award-block { display:grid; grid-template-columns: minmax(0,1.4fr) minmax(0,1fr); gap:2.5rem; align-items:center; padding:2.5rem; border-bottom:1px solid var(--line); }
+  .award-block img { width:100%; display:block; }
+  .award-kicker { font-size:0.7rem; letter-spacing:0.25em; text-transform:uppercase; color:#e8c872; margin-bottom:1rem; }
+  .award-title { font-family:'Cormorant',serif; font-size:clamp(1.6rem,3vw,2.4rem); font-weight:300; line-height:1.15; margin-bottom:1rem; }
+  .award-sub { font-size:0.8rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(232,228,220,0.6); line-height:1.9; }
+  @media (max-width: 768px) { .award-block { grid-template-columns:1fr; gap:1.5rem; padding:1.5rem; } }
 </style>
 </head>
 <body>
@@ -145,6 +151,15 @@
 <div class="hero">
   <div class="hero-title">Trailers</div>
   <div class="hero-roles" data-en="Trailer Editor" data-es="Montaje de trailers">Trailer Editor</div>
+</div>
+
+<div class="award-block">
+  <img src="premio-mejor-trailer-mdq.jpg" alt="Daniel Casabé recibiendo el premio a Mejor Trailer en el Festival de Mar del Plata 2016">
+  <div>
+    <div class="award-kicker" data-en="★ Award" data-es="★ Premio">★ Award</div>
+    <div class="award-title" data-en="Best Trailer" data-es="Premio al Mejor Trailer">Best Trailer</div>
+    <div class="award-sub" data-en="Mar del Plata International Film Festival 2016 · El Invierno" data-es="Festival Internacional de Cine de Mar del Plata 2016 · El Invierno">Mar del Plata International Film Festival 2016 · El Invierno</div>
+  </div>
 </div>
 
 <div style="margin-top:2rem;">
