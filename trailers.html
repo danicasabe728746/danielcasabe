@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daniel Casabé — Trailers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Karla:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --black: #0b1a2e; --white: #e8e4dc; --line: rgba(232,228,220,0.06); }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--white); font-family: 'Karla', sans-serif; overflow-x: hidden; }
+
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 1.75rem 2.5rem; border-bottom: 1px solid var(--line); position: sticky; top: 0; background: var(--black); z-index: 10; }
+  .logo { font-family: 'Cormorant', serif; font-size: 1.2rem; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); }
+  .nav-links { display: flex; gap: 2rem; align-items: center; }
+  .nav-link { font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); text-decoration: none; transition: opacity 0.25s; }
+  .nav-link:hover { opacity: 0.6; }
+  .nav-about { font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); border: 1px solid rgba(232,228,220,0.35); padding: 0.4rem 1rem; text-decoration: none; transition: all 0.25s; cursor: pointer; background: none; font-family: 'Karla', sans-serif; }
+  .nav-about:hover { opacity: 0.6; }
+
+  .hero { padding: 1.5rem 2.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; border-bottom: 1px solid var(--line); }
+  .hero-links { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+  .hero-btn { display: inline-flex; align-items: center; gap: 0.75rem; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); border: 1px solid rgba(232,228,220,0.35); padding: 0.55rem 1.1rem; text-decoration: none; transition: opacity 0.25s; font-family: 'Karla', sans-serif; }
+  .hero-btn:hover { opacity: 0.6; }
+  .hero-btn .imdb-badge { font-size: 0.7rem; }
+  .logo-group { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+  .nav-chips { display: flex; gap: 0.6rem; align-items: center; }
+  .nav-chip { display: inline-flex; align-items: center; gap: 0.45rem; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); border: 1px solid rgba(232,228,220,0.3); padding: 0.2rem 0.55rem; text-decoration: none; transition: opacity 0.25s; font-family: 'Karla', sans-serif; white-space: nowrap; }
+  .nav-chip:hover { opacity: 0.6; }
+  .nav-chip .imdb-badge { font-size: 0.6rem; }
+  .nav-chip svg { width: 11px; height: 11px; }
+  .editing-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(4, auto); grid-auto-flow: column; column-gap: 3rem; }
+  .hero-roles { font-size: 0.9rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--white); line-height: 2.2; text-align: left; }
+
+  .section-header { padding: 2.5rem 2.5rem 0; display: flex; align-items: center; gap: 1.5rem; }
+  .section-title { font-size: 0.8rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--white); white-space: nowrap; }
+  .section-line { flex: 1; height: 1px; background: var(--line); }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); margin-top: 1.5rem; }
+  .cell { background: var(--black); position: relative; overflow: hidden; cursor: pointer; }
+  .cell-inner { width: 100%; padding-bottom: 60%; position: relative; overflow: hidden; }
+  .cell-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94); }
+  .cell:hover .cell-bg { transform: scale(1.05); }
+  .cell-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.35s; background: rgba(6,14,26,0.45); }
+  .cell:hover .cell-overlay { opacity: 1; }
+  .play-ring { width: 48px; height: 48px; border: 1px solid rgba(232,228,220,0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .play-tri { width: 0; height: 0; border-style: solid; border-width: 7px 0 7px 14px; border-color: transparent transparent transparent rgba(232,228,220,0.9); margin-left: 3px; }
+  .cell-info { padding: 0.75rem 1rem 1rem; border-top: 1px solid var(--line); }
+  .cell-title { font-family: 'Cormorant', serif; font-size: 1rem; font-weight: 300; color: rgba(232,228,220,0.75); line-height: 1.3; }
+
+  .c0{background-color:#0e1f36}.c1{background-color:#0c1c31}.c2{background-color:#10223a}
+  .c3{background-color:#0d1d33}.c4{background-color:#0e1f36}.c5{background-color:#0c1c31}
+  .c6{background-color:#10223a}.c7{background-color:#0d1d33}.c8{background-color:#0e1f36}
+  .c9{background-color:#0c1c31}.c10{background-color:#10223a}.c11{background-color:#0d1d33}
+  .c12{background-color:#0e1f36}.c13{background-color:#0c1c31}
+
+  .coming { grid-column: span 3; padding: 3rem 2.5rem; font-family: 'Cormorant', serif; font-style: italic; font-size: 1rem; color: rgba(232,228,220,0.12); }
+  .lang-switch { display: flex; gap: 0.5rem; align-items: center; }
+  .lang-btn { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(232,228,220,0.35); background: none; border: none; cursor: pointer; font-family: 'Karla', sans-serif; padding: 0.2rem 0.4rem; transition: color 0.25s; }
+  .lang-btn.active { color: var(--white); border-bottom: 1px solid rgba(232,228,220,0.5); }
+  .lang-btn:hover { color: var(--white); }
+  .lang-sep { color: rgba(232,228,220,0.15); font-size: 0.65rem; }
+
+  /* EDITING LIST */
+  .editing-list { padding: 2rem 2.5rem 0; max-width: 1200px; }
+  .editing-item { display: flex; align-items: center; gap: 1.5rem; padding: 1rem 0; border-bottom: 1px solid var(--line); }
+  .editing-poster { width: 84px; height: 124px; object-fit: cover; flex-shrink: 0; background: #111; }
+  .editing-info { flex: 1; }
+  .editing-title { font-family: 'Cormorant', serif; font-size: 1rem; color: var(--white); font-weight: 300; }
+  .editing-meta { font-size: 0.65rem; letter-spacing: 0.1em; color: rgba(232,228,220,0.35); margin-top: 0.2rem; }
+  .grid-vertical { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); margin-top: 1.5rem; max-width: 900px; margin-left: 0; margin-right: auto; }
+  .grid-vertical .cell-inner { width: 100%; padding-bottom: 148%; position: relative; overflow: hidden; }
+
+  /* VIDEO MODAL */
+  .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(6,14,26,0.97); z-index: 100; align-items: center; justify-content: center; flex-direction: column; padding: 2rem; }
+  .modal-backdrop.open { display: flex; }
+  .modal-player { width: 100%; max-width: 900px; aspect-ratio: 16/9; background: #0f0f0f; border: 1px solid rgba(232,228,220,0.08); position: relative; display: flex; align-items: center; justify-content: center; }
+  .modal-iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; display: none; }
+  .modal-iframe.loaded { display: block; }
+  .modal-placeholder { font-family: 'Cormorant', serif; font-style: italic; font-size: 1rem; color: rgba(232,228,220,0.15); }
+  .modal-controls { width: 100%; max-width: 900px; display: flex; justify-content: space-between; align-items: center; margin-top: 1.25rem; }
+  .modal-title-label { font-family: 'Cormorant', serif; font-size: 0.85rem; color: rgba(232,228,220,0.35); font-style: italic; }
+  .modal-close { font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--white); cursor: pointer; border: none; background: none; font-family: 'Karla', sans-serif; transition: opacity 0.3s; padding: 0; }
+  .modal-close:hover { opacity: 0.6; }
+  .modal-nav { display: flex; gap: 1.5rem; }
+  .modal-nav button { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); cursor: pointer; border: none; background: none; font-family: 'Karla', sans-serif; transition: opacity 0.3s; padding: 0; }
+  .modal-nav button:hover { opacity: 0.6; }
+
+  /* ABOUT OVERLAY */
+  .about-overlay { display: none; position: fixed; inset: 0; background: rgba(6,14,26,0.97); z-index: 200; align-items: flex-start; justify-content: center; padding: 3rem 1.5rem; overflow-y: auto; }
+  .about-overlay.open { display: flex; }
+  .about-box { max-width: 660px; width: 100%; margin: auto; padding-bottom: 2rem; }
+  .about-close { font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--white); background: none; border: none; cursor: pointer; font-family: 'Karla', sans-serif; margin-bottom: 3rem; transition: opacity 0.3s; padding: 0; display: block; }
+  .about-close:hover { opacity: 0.6; }
+  .about-name-big { font-family: 'Cormorant', serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 300; line-height: 1; margin-bottom: 0.5rem; }
+  .about-tagline { font-family: 'Cormorant', serif; font-style: italic; font-size: 1.05rem; color: rgba(232,228,220,0.35); margin-bottom: 2.5rem; }
+  .about-text { font-family: 'Cormorant', serif; font-size: 1.1rem; font-weight: 300; line-height: 1.85; color: rgba(232,228,220,0.6); margin-bottom: 1.25rem; }
+  .about-text em { font-style: italic; color: rgba(232,228,220,0.9); }
+  .about-imdb { display: inline-flex; align-items: center; gap: 0.75rem; margin-top: 2rem; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(232,228,220,0.3); border: 1px solid rgba(232,228,220,0.1); padding: 0.6rem 1.25rem; text-decoration: none; transition: all 0.25s; }
+  .about-imdb:hover { color: var(--white); border-color: rgba(232,228,220,0.35); }
+  .imdb-badge { background: #f5c518; color: #000; font-weight: 700; font-size: 0.65rem; padding: 0.1rem 0.3rem; font-family: 'Karla', sans-serif; letter-spacing: 0; }
+
+  .bottom-bar { display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 2.5rem; border-top: 1px solid var(--line); margin-top: 4rem; flex-wrap: wrap; gap: 1rem; }
+  .bottom-contact { display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; }
+  .bottom-link { font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); text-decoration: none; transition: opacity 0.3s; }
+  .bottom-link:hover { opacity: 0.6; }
+  .bottom-tag { font-family: 'Cormorant', serif; font-style: italic; font-size: 0.9rem; color: rgba(232,228,220,0.2); }
+
+  @media (max-width: 768px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .hero { flex-direction: column; align-items: flex-start; gap: 1.25rem; padding: 1.75rem 1.5rem; }
+    .hero-roles { text-align: left; }
+    .editing-grid { grid-template-columns: 1fr; grid-template-rows: none; grid-auto-flow: row; }
+    .logo-group { gap: 0.6rem; }
+    nav { padding: 1.25rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    .bottom-bar { flex-direction: column; gap: 1rem; }
+  }
+
+  .pending .cell-overlay { display:none; }
+  .pending { cursor: default; }
+  .pending-label { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:'Cormorant',serif; font-style:italic; font-size:0.95rem; color:rgba(232,228,220,0.25); }
+  .cell-meta { font-size:0.65rem; letter-spacing:0.1em; color:rgba(232,228,220,0.4); margin-top:0.3rem; }
+  .award { display:inline-block; margin-top:0.4rem; font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:#e8c872; }
+  .hero-title { font-family:'Cormorant',serif; font-size:clamp(2rem,5vw,3.2rem); font-weight:300; letter-spacing:0.05em; }
+  #trailers-grid { background: transparent; gap: 0; }
+  #trailers-grid .cell { box-shadow: 0 0 0 0.5px rgba(232,228,220,0.08); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Daniel Casabé</div>
+  <div class="nav-links">
+    <div class="lang-switch">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-title">Trailers</div>
+  <div class="hero-roles" data-en="Trailer Editor" data-es="Montaje de trailers">Trailer Editor</div>
+</div>
+
+<div style="margin-top:2rem;">
+  <div class="grid" id="trailers-grid"></div>
+</div>
+
+<div class="bottom-bar">
+  <div class="bottom-contact">
+    <a href="mailto:dani.casabe@gmail.com" class="bottom-link">dani.casabe@gmail.com</a>
+    <a href="tel:+5491154090279" class="bottom-link">+54 9 11 5409 0279</a>
+    <a href="https://instagram.com/dani_casabe" target="_blank" class="bottom-link">@dani_casabe</a>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="modal">
+  <div class="modal-player">
+    <iframe class="modal-iframe" id="iframe" allowfullscreen allow="autoplay; fullscreen"></iframe>
+    <div class="modal-placeholder" id="placeholder">Loading...</div>
+  </div>
+  <div class="modal-controls">
+    <button class="modal-close" onclick="closeModal()">✕ close</button>
+    <div class="modal-title-label" id="modal-title"></div>
+    <div class="modal-nav">
+      <button onclick="navModal(-1)">← prev</button>
+      <button onclick="navModal(1)">next →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  /*
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  TRAILERS — { id: 'vimeoID', title: 'Título', meta: 'Dir. … · Año' }
+  Sin id = aparece como "pendiente". award: texto del premio (opcional)
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  */
+  const TRAILERS = [
+    { id: '', title: 'El Invierno', meta: '2016', award: 'Best Trailer · Mar del Plata IFF 2016' },
+    { id: '', title: 'Jauja', meta: '' },
+    { id: '1191398977', title: 'La Sudestada', meta: 'Dir. Daniel Casabé & Edgardo Dieleke · 2023' },
+    { id: '', title: 'Norma', meta: '' },
+    { id: '', title: 'Al Desierto', meta: '' },
+    { id: '', title: 'Los que vuelven', meta: '' },
+    { id: '', title: 'Yo Niña', meta: '' },
+    { id: '1191398975', title: 'La Forma Exacta de las Islas', meta: 'Dir. Daniel Casabé & Edgardo Dieleke · 2012' },
+    { id: '1191398974', title: 'Cracks de Nácar', meta: 'Dir. Daniel Casabé & Edgardo Dieleke · 2011' },
+    { id: '', title: 'Buena Vista Social Club II', meta: '' },
+    { id: '', title: 'El Desierto', meta: '2014' },
+    { id: '', title: 'Troncoso (Uruguay)', meta: '' },
+    { id: '', title: 'Soy tu mensaje', meta: 'Ricky Jacobo' },
+  ];
+
+  let currentList = [], currentIdx = 0;
+  const playable = TRAILERS.filter(t => t.id || t.youtube);
+
+  function buildGrid() {
+    const grid = document.getElementById('trailers-grid');
+    TRAILERS.forEach((item, i) => {
+      const ok = item.id || item.youtube;
+      const cell = document.createElement('div');
+      cell.className = 'cell' + (ok ? '' : ' pending');
+      cell.innerHTML = `
+        <div class="cell-inner">
+          <div class="cell-bg c${i % 14}" id="bg-${i}"></div>
+          ${ok ? '<div class="cell-overlay"><div class="play-ring"><div class="play-tri"></div></div></div>' : '<div class="pending-label">video pendiente</div>'}
+        </div>
+        <div class="cell-info"><div class="cell-title">${item.title}</div>
+          ${item.meta ? `<div class="cell-meta">${item.meta}</div>` : ''}
+          ${item.award ? `<div class="award">★ ${item.award}</div>` : ''}</div>`;
+      if (ok) cell.onclick = () => openModal(playable, playable.indexOf(item));
+      grid.appendChild(cell);
+      if (item.id) loadThumb(item, i);
+    });
+  }
+
+  async function loadThumb(item, i) {
+    const bg = document.getElementById('bg-' + i);
+    if (item.poster) { bg.style.backgroundImage = `url(${item.poster})`; return; }
+    try {
+      const res = await fetch(`https://vimeo.com/api/oembed.json?url=https://vimeo.com/${item.id}&width=640`);
+      const data = await res.json();
+      if (data.thumbnail_url) bg.style.backgroundImage = `url(${data.thumbnail_url})`;
+    } catch(e) {}
+  }
+
+  function getEmbed(item) {
+    if (item.youtube) return `https://www.youtube.com/embed/${item.youtube}?autoplay=1&rel=0&modestbranding=1`;
+    return `https://player.vimeo.com/video/${item.id}?autoplay=1&color=e8e4dc&byline=0&portrait=0&title=0`;
+  }
+  function openModal(list, idx) { currentList = list; currentIdx = idx; document.getElementById('modal').classList.add('open'); document.body.style.overflow = 'hidden'; renderPlayer(); }
+  function closeModal() { document.getElementById('modal').classList.remove('open'); document.body.style.overflow = ''; const f = document.getElementById('iframe'); f.src = ''; f.classList.remove('loaded'); }
+  function navModal(dir) { if (!currentList.length) return; currentIdx = (currentIdx + dir + currentList.length) % currentList.length; renderPlayer(); }
+  function renderPlayer() {
+    const item = currentList[currentIdx], f = document.getElementById('iframe');
+    f.src = getEmbed(item); f.classList.add('loaded');
+    document.getElementById('placeholder').style.display = 'none';
+    document.getElementById('modal-title').textContent = item.title;
+  }
+
+  const T = { en: { close: '✕ close', prev: '← prev', next: 'next →', pending: 'video pending' },
+              es: { close: '✕ cerrar', prev: '← anterior', next: 'siguiente →', pending: 'video pendiente' } };
+  function setLang(lang) {
+    const t = T[lang];
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+    document.querySelector('.modal-close').textContent = t.close;
+    document.querySelectorAll('.modal-nav button')[0].textContent = t.prev;
+    document.querySelectorAll('.modal-nav button')[1].textContent = t.next;
+    document.querySelectorAll('.pending-label').forEach(el => el.textContent = t.pending);
+    document.querySelectorAll('[data-' + lang + ']').forEach(el => el.textContent = el.getAttribute('data-' + lang));
+  }
+
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('modal').classList.contains('open')) return;
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'ArrowRight') navModal(1);
+    if (e.key === 'ArrowLeft') navModal(-1);
+  });
+  document.getElementById('modal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+
+  buildGrid();
+  setLang('en');
+</script>
+</body>
+</html>
