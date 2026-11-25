@@ -139,6 +139,14 @@
   .ficha { display:flex; gap:0.9rem; align-items:center; padding:0.9rem 1rem; border-bottom:1px solid var(--line); min-height:110px; }
   .ficha-poster { width:58px; height:86px; flex-shrink:0; background:#e9e9e9 center/cover no-repeat; display:flex; align-items:center; justify-content:center; font-family:'Cormorant',serif; font-style:italic; font-size:0.7rem; color:rgba(20,20,20,0.3); box-shadow:0 2px 8px rgba(0,0,0,0.15); }
   .ficha .cell-info { padding:0; border:0; }
+  #trailers-grid { grid-template-columns: repeat(2, 1fr); }
+  .pair { display:flex; gap:0; align-items:stretch; }
+  .pair-poster { flex:0 0 27.3%; aspect-ratio:2/3; background:#e9e9e9 center/cover no-repeat; display:flex; align-items:center; justify-content:center; font-family:'Cormorant',serif; font-style:italic; font-size:0.9rem; color:rgba(20,20,20,0.3); }
+  .pair-video { flex:1; min-width:0; align-self:center; }
+  .pair-video .cell-inner { padding-bottom:56.25%; }
+  #trailers-grid .cell-info { border-top:0; padding:0.8rem 1rem 1.2rem; }
+  .award-block { margin-top:3rem; border-top:1px solid var(--line); }
+  @media (max-width: 768px) { #trailers-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -161,6 +169,10 @@
   </div>
 </div>
 
+<div style="margin-top:2rem;">
+  <div class="grid" id="trailers-grid"></div>
+</div>
+
 <div class="award-block">
   <img src="premio-mejor-trailer-mdq.jpg" alt="Daniel Casabé recibiendo el premio a Mejor Trailer en el Festival de Mar del Plata 2016">
   <div>
@@ -168,10 +180,6 @@
     <div class="award-title" data-en="Best Trailer" data-es="Premio al Mejor Trailer">Best Trailer</div>
     <div class="award-sub" data-en="Mar del Plata International Film Festival 2016 · El Invierno" data-es="Festival Internacional de Cine de Mar del Plata 2016 · El Invierno">Mar del Plata International Film Festival 2016 · El Invierno</div>
   </div>
-</div>
-
-<div style="margin-top:2rem;">
-  <div class="grid" id="trailers-grid"></div>
 </div>
 
 <div class="bottom-bar">
@@ -208,6 +216,7 @@
     { youtube: 'YM6NHUXCHhs', title: 'El Invierno', meta: '2016', award: 'Best Trailer · Mar del Plata IFF 2016' },
     { youtube: 'MLvd4gyHNJ4', title: 'Jauja', meta: '' },
     { id: '1191398977', title: 'La Sudestada', poster: './img:001%20LA%20SUDESTADA%202023.jpg', meta: 'Dir. Daniel Casabé & Edgardo Dieleke · 2023' },
+    { id: '1191398974', title: 'Cracks de Nácar', poster: './img:003%20CRACKS%20DE%20NACAR%202012.jpg', meta: 'Dir. Daniel Casabé & Edgardo Dieleke · 2011' },
     { youtube: 'eXeGdL8HPC8', title: 'Norma', meta: '' },
     { youtube: 'CWdEzK52Wkw', title: 'Al Desierto', poster: 'AL%20DESIERTO.png', meta: '' },
     { youtube: '-YbwPl2xrZs', title: 'Los que vuelven', poster: 'LOS%20QUE%20VUELVEN.png', meta: '' },
@@ -228,16 +237,18 @@
       const cell = document.createElement('div');
       cell.className = 'cell' + (ok ? '' : ' pending');
       cell.innerHTML = `
-        <div class="ficha">
-          <div class="ficha-poster"${item.poster ? ` style="background-image:url('${item.poster}')"` : ''}>${item.poster ? '' : 'afiche'}</div>
-          <div class="cell-info"><div class="cell-title">${item.title}</div>
+        <div class="pair">
+          <div class="pair-poster"${item.poster ? ` style="background-image:url('${item.poster}')"` : ''}>${item.poster ? '' : 'afiche'}</div>
+          <div class="pair-video">
+            <div class="cell-inner">
+              <div class="cell-bg c${i % 14}" id="bg-${i}"></div>
+              ${ok ? '<div class="cell-overlay"><div class="play-ring"><div class="play-tri"></div></div></div>' : '<div class="pending-label">video pendiente</div>'}
+            </div>
+          </div>
+        </div>
+        <div class="cell-info"><div class="cell-title">${item.title}</div>
           ${item.meta ? `<div class="cell-meta">${item.meta}</div>` : ''}
           ${item.award ? `<div class="award">★ ${item.award}</div>` : ''}</div>
-        </div>
-        <div class="cell-inner">
-          <div class="cell-bg c${i % 14}" id="bg-${i}"></div>
-          ${ok ? '<div class="cell-overlay"><div class="play-ring"><div class="play-tri"></div></div></div>' : '<div class="pending-label">video pendiente</div>'}
-        </div>
 `;
       if (ok) cell.onclick = () => openModal(playable, playable.indexOf(item));
       grid.appendChild(cell);
