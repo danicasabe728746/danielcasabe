@@ -213,17 +213,17 @@
   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   */
   const TRAILERS = [
-    { youtube: 'YM6NHUXCHhs', title: 'El Invierno', meta: '2016', award: 'Best Trailer · Mar del Plata IFF 2016' },
-    { youtube: 'MLvd4gyHNJ4', title: 'Jauja', meta: '' },
+    { youtube: 'YM6NHUXCHhs', title: 'El Invierno', poster: 'afiche-el-invierno.jpg', still: 'still-el-invierno.jpg', meta: '2016', award: 'Best Trailer · Mar del Plata IFF 2016' },
+    { youtube: 'MLvd4gyHNJ4', title: 'Jauja', poster: 'afiche-jauja.jpg', still: 'still-jauja.jpg', meta: '' },
     { id: '1191398977', title: 'La Sudestada', poster: './img:001%20LA%20SUDESTADA%202023.jpg', meta: 'Dir. Daniel Casabé & Edgardo Dieleke · 2023' },
     { id: '1191398974', title: 'Cracks de Nácar', poster: './img:003%20CRACKS%20DE%20NACAR%202012.jpg', meta: 'Dir. Daniel Casabé & Edgardo Dieleke · 2011' },
     { youtube: 'eXeGdL8HPC8', title: 'Norma', meta: '' },
-    { youtube: 'CWdEzK52Wkw', title: 'Al Desierto', poster: 'AL%20DESIERTO.png', meta: '' },
+    { youtube: 'CWdEzK52Wkw', title: 'Al Desierto', poster: 'afiche-al-desierto.jpg', still: 'still-al-desierto.jpg', meta: '' },
     { youtube: '-YbwPl2xrZs', title: 'Los que vuelven', poster: 'LOS%20QUE%20VUELVEN.png', meta: '' },
     { youtube: 'EoLgemzE-Jg', title: 'Yo Niña', meta: '' },
     { id: '1249469421', title: 'Buena Vista Social Club: Adiós', meta: 'Dir. Lucy Walker · 2017' },
-    { youtube: 'H8bs5txLb_M', title: 'El Desierto', meta: 'Dir. Christoph Behl · 2015' },
-    { id: '1247058558', title: 'Cuando yo existía (When I Existed)', meta: 'Dir. Ale Damiani & Martín Avdolov · 2026', award: 'World Premiere · Tallinn Black Nights 2026' },
+    { youtube: 'H8bs5txLb_M', title: 'El Desierto', poster: 'afiche-el-desierto.jpg', still: 'still-el-desierto.jpg', meta: 'Dir. Christoph Behl · 2015' },
+    { id: '1247058558', title: 'Cuando yo existía (When I Existed)', poster: 'afiche-cuando-yo-existia.jpg', meta: 'Dir. Ale Damiani & Martín Avdolov · 2026', award: 'World Premiere · Tallinn Black Nights 2026' },
     { youtube: 'On7tiL-JRvY', title: 'Soy tu mensaje', meta: 'Dir. Ricardo M. Jacobo · 2026' },
   ];
 
@@ -258,6 +258,7 @@
 
   async function loadThumb(item, i) {
     const bg = document.getElementById('bg-' + i);
+    if (item.still) { bg.style.backgroundImage = `url('${item.still}')`; return; }
         if (item.youtube) { bg.style.backgroundImage = `url(https://img.youtube.com/vi/${item.youtube}/hqdefault.jpg)`; return; }
     try {
       const res = await fetch(`https://vimeo.com/api/oembed.json?url=https://vimeo.com/${item.id}&width=640`);
