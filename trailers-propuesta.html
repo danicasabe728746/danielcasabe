@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Karla:wght@300;400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root { --black: #ffffff; --white: #141414; --line: rgba(0,0,0,0.09); }
+  :root { --black: #eeeae3; --white: #141414; --line: rgba(0,0,0,0.09); }
   html { scroll-behavior: smooth; }
   body { background: var(--black); color: var(--white); font-family: 'Karla', sans-serif; overflow-x: hidden; }
 
@@ -140,10 +140,10 @@
   .ficha-poster { width:58px; height:86px; flex-shrink:0; background:#e9e9e9 center/cover no-repeat; display:flex; align-items:center; justify-content:center; font-family:'Cormorant',serif; font-style:italic; font-size:0.7rem; color:rgba(20,20,20,0.3); box-shadow:0 2px 8px rgba(0,0,0,0.15); }
   .ficha .cell-info { padding:0; border:0; }
   #trailers-grid { grid-template-columns: repeat(2, 1fr); }
-  .pair { display:flex; gap:14px; align-items:stretch; }
+  .pair { display:flex; gap:14px; align-items:stretch; padding:12px 12px 4px; }
   .pair-poster { flex:0 0 27.3%; aspect-ratio:2/3; background:#e9e9e9 center/cover no-repeat; display:flex; align-items:center; justify-content:center; font-family:'Cormorant',serif; font-style:italic; font-size:0.9rem; color:rgba(20,20,20,0.3); }
-  .pair-video { flex:1; min-width:0; align-self:center; padding:8px 12px 8px 0; }
-  .pair-video .cell-inner { padding-bottom:56.25%; border:7px solid #fff; box-shadow:0 0 0 1px rgba(0,0,0,0.10), 0 4px 14px rgba(0,0,0,0.16); }
+  .pair-video { flex:1; min-width:0; align-self:stretch; }
+  .pair-video .cell-inner { padding-bottom:0; height:100%; box-sizing:border-box; border:7px solid #fff; box-shadow:0 0 0 1px rgba(0,0,0,0.10), 0 4px 14px rgba(0,0,0,0.16); }
   #trailers-grid .cell-info { border-top:0; padding:0.8rem 1rem 1.2rem; }
   .award-block { margin-top:3rem; border-top:1px solid var(--line); }
   @media (max-width: 768px) { #trailers-grid { grid-template-columns: 1fr; } }
@@ -213,18 +213,18 @@
   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   */
   const TRAILERS = [
-    { youtube: 'YM6NHUXCHhs', title: 'El Invierno', poster: 'afiche-el-invierno.jpg', still: 'still-el-invierno.jpg', meta: '2016', award: 'Best Trailer · Mar del Plata IFF 2016' },
+    { youtube: 'YM6NHUXCHhs', title: 'El Invierno', poster: 'afiche-el-invierno.jpg', still: 'still-el-invierno.jpg?v=2', meta: '2016', award: 'Best Trailer · Mar del Plata IFF 2016' },
     { youtube: 'MLvd4gyHNJ4', title: 'Jauja', poster: 'afiche-jauja.jpg', still: 'still-jauja.jpg', meta: '' },
     { id: '1191398977', title: 'La Sudestada', poster: './img:001%20LA%20SUDESTADA%202023.jpg', meta: 'Dir. Daniel Casabé & Edgardo Dieleke · 2023' },
-    { id: '1191398974', title: 'Cracks de Nácar', poster: './img:003%20CRACKS%20DE%20NACAR%202012.jpg', meta: 'Dir. Daniel Casabé & Edgardo Dieleke · 2011' },
-    { youtube: 'eXeGdL8HPC8', title: 'Norma', poster: 'afiche-norma.jpg', meta: '' },
+    { id: '1191398974', title: 'Cracks de Nácar', still: 'still-cracks-de-nacar.jpg', poster: './img:003%20CRACKS%20DE%20NACAR%202012.jpg', meta: 'Dir. Daniel Casabé & Edgardo Dieleke · 2011' },
+    { youtube: 'eXeGdL8HPC8', title: 'Norma', poster: 'afiche-norma.jpg', still: 'still-norma.jpg', meta: '' },
     { youtube: 'CWdEzK52Wkw', title: 'Al Desierto', poster: 'afiche-al-desierto.jpg', still: 'still-al-desierto.jpg', meta: '' },
-    { youtube: '-YbwPl2xrZs', title: 'Los que vuelven', poster: 'LOS%20QUE%20VUELVEN.png', meta: '' },
-    { youtube: 'EoLgemzE-Jg', title: 'Yo Niña', poster: 'afiche-yo-nina.jpg', meta: '' },
+    { youtube: '-YbwPl2xrZs', title: 'Los que vuelven', poster: 'LOS%20QUE%20VUELVEN.png', still: 'still-los-que-vuelven.jpg', meta: '' },
+    { youtube: 'EoLgemzE-Jg', title: 'Yo Niña', poster: 'afiche-yo-nina.jpg', still: 'still-yo-nina.jpg', meta: '' },
     { id: '1249469421', title: 'Buena Vista Social Club: Adiós', poster: 'afiche-buena-vista-social-club.jpg', meta: 'Dir. Lucy Walker · 2017' },
     { youtube: 'H8bs5txLb_M', title: 'El Desierto', poster: 'afiche-el-desierto.jpg', still: 'still-el-desierto.jpg', meta: 'Dir. Christoph Behl · 2015' },
     { id: '1247058558', title: 'Cuando yo existía (When I Existed)', poster: 'afiche-cuando-yo-existia.jpg', meta: 'Dir. Ale Damiani & Martín Avdolov · 2026', award: 'World Premiere · Tallinn Black Nights 2026' },
-    { youtube: 'On7tiL-JRvY', title: 'Soy tu mensaje', poster: 'afiche-soy-tu-mensaje.jpg', meta: 'Dir. Ricardo M. Jacobo · 2026' },
+    { youtube: 'On7tiL-JRvY', title: 'Soy tu mensaje', poster: 'afiche-soy-tu-mensaje.jpg', still: 'still-soy-tu-mensaje.jpg', meta: 'Dir. Ricardo M. Jacobo · 2026' },
   ];
 
   let currentList = [], currentIdx = 0;
